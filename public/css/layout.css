@@ -1,0 +1,245 @@
+/* ============================
+   Global Styles
+============================ */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    background-color: #f7fafb;
+    color: #333;
+}
+
+/* ============================
+   Sidebar
+============================ */
+.sidebar {
+    width: 220px;
+    background-color: #0b95bf; /* primary blue */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 15px;
+    gap: 15px;
+    justify-content: flex-start;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+}
+
+/* Logo */
+.sidebar .logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Navigation Links */
+.sidebar .links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Main nav links */
+.sidebar a.nav-item {
+    padding: 12px 15px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar a.nav-item:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.sidebar a.nav-item.active {
+    background-color: #fff;
+    color: #0b95bf;
+    font-weight: 700;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    
+    /* Gradient border on the left */
+    border-left: 5px solid transparent;
+    border-image: linear-gradient(180deg, #4facfe, #00f2fe) 1;
+}
+
+
+/* Extra / Utility Section: now immediately under main links */
+.extra-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;            /* slightly smaller spacing */
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Logout button */
+.sidebar form button {
+    width: 100%;
+    padding: 12px;
+    background: #ff4d4f;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.2s ease;
+}
+
+.sidebar form button:hover {
+    background: #e63946;
+}
+
+/* ============================
+   Main Content
+============================ */
+.main-content {
+    flex: 1;
+    padding: 35px;
+    overflow-y: auto;
+    position: relative;
+    background-color: #f7fafb;
+}
+
+/* ============================
+   Top-Right Profile
+============================ */
+.top-right-profile {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    z-index: 1000;
+}
+
+/* Avatar Circle */
+.avatar-circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.avatar-circle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+}
+
+/* Avatar Dropdown Menu */
+.avatar-menu {
+    display: none;
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    min-width: 180px;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 2000;
+}
+
+.avatar-menu.show {
+    display: flex;
+}
+
+.avatar-menu a,
+.avatar-menu form button {
+    padding: 12px 15px;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.avatar-menu a:hover,
+.avatar-menu form button:hover {
+    background-color: #f2f2f2;
+}
+
+/* ============================
+   Footer
+============================ */
+footer.site-footer {
+    background-color: #e3f2f5;
+    padding: 25px 35px;
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 30px;
+    border-top: 1px solid #d0d0d0;
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.footer-bottom {
+    text-align: center;
+    color: #888;
+}
+
+/* ============================
+   Responsive Adjustments
+============================ */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 180px;
+        padding: 20px 10px;
+    }
+
+    .main-content {
+        padding: 25px;
+    }
+
+    .avatar-circle {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: -220px;
+        top: 0;
+        height: 100%;
+        transition: left 0.3s ease;
+        z-index: 999;
+    }
+
+    .sidebar.show {
+        left: 0;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+}

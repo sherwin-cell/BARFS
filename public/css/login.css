@@ -1,0 +1,105 @@
+/* FULL PAGE WRAPPER */
+.page-wrapper {
+    height: 100vh;
+    display: flex;
+}
+
+/* LEFT SIDE BACKGROUND (slightly bigger) */
+.left-side {
+    flex: 6; /* previously 1 */
+    background:
+        linear-gradient(rgba(78, 115, 223, 0.4), rgba(28, 200, 138, 0.4)),
+        url('../images/background-photo.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+/* RIGHT SIDE LOGIN AREA (smaller) */
+.right-side {
+    flex: 4; /* previously 1 */
+    background: #f8f9fc;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* LOGIN CARD (make it slightly smaller) */
+.card {
+    width: 100%;
+    max-width: 320px; /* previously 380px */
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px; /* slightly reduced */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* INPUTS */
+.form-control {
+    border-radius: 10px;
+    padding: 12px;
+}
+
+/* BUTTON */
+.btn-primary {
+    background: #4e73df;
+    border: none;
+    padding: 12px;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+.btn-primary:hover {
+    background: #2e59d9;
+}
+
+/* RESPONSIVE (HIDE IMAGE ON MOBILE) */
+@media (max-width: 992px) {
+    .left-side {
+        display: none;
+    }
+
+    .right-side {
+        flex: 1;
+    }
+
+    .card {
+        max-width: 90%; /* make responsive on small screens */
+    }
+}
+
+/* LEFT LOGO */
+.left-logo {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 10;
+    border: 3px solid white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* TEXT BESIDE LOGO */
+.left-logo-text {
+    position: absolute;
+    top: 45px;
+    left: 130px;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.45);
+    font-family: 'Poppins', sans-serif;
+    z-index: 10;
+
+    background: linear-gradient(90deg, #ffffff, #d1e9ff);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    color: transparent;
+}
+
