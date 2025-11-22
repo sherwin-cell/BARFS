@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ResolutionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,19 +35,8 @@ Route::view('/about', 'about')->name('about');
 Route::view('/terms', 'terms')->name('terms');
 Route::view('/privacy', 'privacy')->name('privacy');
 Route::view('/contact', 'contact')->name('contact');
-
-/*
-|--------------------------------------------------------------------------
-| Contact Form Submission
-|--------------------------------------------------------------------------
-*/
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
-/*
-|--------------------------------------------------------------------------
-| Get Started → Redirect to Login
-|--------------------------------------------------------------------------
-*/
 Route::get('/get-started', fn() => redirect()->route('login'))->name('get-started');
 
 /*
@@ -54,25 +44,31 @@ Route::get('/get-started', fn() => redirect()->route('login'))->name('get-starte
 | Dashboard Routes (Protected)
 |--------------------------------------------------------------------------
 */
-
 Route::middleware('auth')->prefix('dashboard')->group(function () {
-    // Dashboard routes
+
+    // Main dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/report', [DashboardController::class, 'report'])->name('dashboard.report');
+
+    // Feedback & Updates
     Route::get('/feedbacks', [DashboardController::class, 'feedbacks'])->name('dashboard.feedbacks');
     Route::get('/updates', [DashboardController::class, 'updates'])->name('dashboard.updates');
 
-    // Profile routes
+    // Profile
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
-    // Account pages
+    // Accounts
     Route::view('/accounts', 'dashboard.accounts.accounts')->name('dashboard.accounts.accounts');
     Route::put('/accounts/update', [AccountController::class, 'update'])->name('accounts.update');
     Route::put('/accounts/password', [AccountController::class, 'updatePassword'])->name('accounts.password');
     Route::delete('/accounts/delete', [AccountController::class, 'destroy'])->name('accounts.delete');
 
-    // Other extra pages
+    // Settings & Help
     Route::view('/settings', 'dashboard.settings.settings')->name('dashboard.settings.settings');
     Route::view('/help', 'dashboard.help.help')->name('dashboard.help.help');
+
+    // Resolutions
+    Route::get('/resolutions', [ResolutionController::class, 'index'])->name('dashboard.resolutions'); // Use this for Blade links
+    Route::get('/resolutions/create', [ResolutionController::class, 'create'])->name('dashboard.resolutions.create');
+    Route::post('/resolutions', [ResolutionController::class, 'store'])->name('dashboard.resolutions.store');
 });

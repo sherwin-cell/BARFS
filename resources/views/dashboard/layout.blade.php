@@ -8,9 +8,13 @@
 
     <!-- External CSS -->
     <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/index.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;700&display=swap" rel="stylesheet">
+
     <!-- Bootstrap 5 (if not already included in your layout) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -24,8 +28,8 @@
         <div class="links">
             <a href="{{ route('dashboard') }}"
                class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">Dashboard</a>
-            <a href="{{ route('dashboard.report') }}"
-               class="nav-item {{ request()->routeIs('dashboard.report') ? 'active' : '' }}">Results</a>
+            <a href="{{ route('dashboard.resolutions') }}"
+               class="nav-item {{ request()->routeIs('dashboard.resolutions') || request()->routeIs('dashboard.resolutions.*') ? 'active' : '' }}">Resolution</a>
             <a href="{{ route('dashboard.feedbacks') }}"
                class="nav-item {{ request()->routeIs('dashboard.feedbacks') ? 'active' : '' }}">Feedback</a>
             <a href="{{ route('dashboard.updates') }}"
