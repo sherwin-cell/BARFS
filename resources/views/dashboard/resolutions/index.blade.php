@@ -13,8 +13,8 @@
             </div>
             <div>
                 <a href="{{ route('dashboard.resolutions.create') }}" class="btn btn-primary">
-                    <i class="bi bi-plus-lg"></i> New Resolution
-                </a>
+                <i class="bi bi-plus-lg"></i> New Resolution
+            </a>
             </div>
         </div>
     </div>

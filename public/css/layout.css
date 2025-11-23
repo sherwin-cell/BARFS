@@ -309,7 +309,8 @@ footer.site-footer {
 }
 
 .status-badge.active,
-.status-badge.published {
+.status-badge.published,
+.status-badge.approved {
     background-color: #d4edda;
     color: #155724;
 }
@@ -320,7 +321,8 @@ footer.site-footer {
 }
 
 .status-badge.inactive,
-.status-badge.draft {
+.status-badge.draft,
+.status-badge.rejected {
     background-color: #f8d7da;
     color: #721c24;
 }

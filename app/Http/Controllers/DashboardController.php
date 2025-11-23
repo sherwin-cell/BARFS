@@ -27,10 +27,30 @@ class DashboardController extends Controller
         $totalFeedbacks = Feedback::count();
         $totalUpdates = Update::count();
 
+        // Fetch resolution status counts
+        $pendingResolutions = Resolution::where('status', 'pending')->count();
+        $approvedResolutions = Resolution::where('status', 'approved')->count();
+        $rejectedResolutions = Resolution::where('status', 'rejected')->count();
+
+        // Fetch recent resolutions (last 5)
+        $recentResolutions = Resolution::latest()->take(5)->get();
+
+        // Feedback count
+        $feedbackCount = Feedback::count();
+
+        // Open issues (updates with pending status)
+        $openIssues = Update::where('status', 'pending')->count();
+
         return view('dashboard.index', compact(
             'totalResolutions',
             'totalFeedbacks',
-            'totalUpdates'
+            'totalUpdates',
+            'pendingResolutions',
+            'approvedResolutions',
+            'rejectedResolutions',
+            'recentResolutions',
+            'feedbackCount',
+            'openIssues'
         ));
     }
 

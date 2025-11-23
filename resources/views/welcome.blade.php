@@ -3,143 +3,349 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BarangayCloud — Welcome</title>
+    <title>MANAPAO BURFS - Barangay Management System</title>
 
     <!-- CSS -->
     <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
-    <div class="bc-welcome">
-
-        <!-- Top Navigation -->
-        <nav class="topbar container">
-            <a href="{{ route('home') }}" class="logo">BarangayCloud</a>
-            <div class="nav-right">
-                <a href="{{ route('home') }}" class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
-                <a href="{{ route('about') }}" class="nav-item {{ request()->routeIs('about') ? 'active' : '' }}">About</a>
-                <a href="{{ route('terms') }}" class="nav-item {{ request()->routeIs('terms') ? 'active' : '' }}">Terms</a>
-                <a href="{{ route('privacy') }}" class="nav-item {{ request()->routeIs('privacy') ? 'active' : '' }}">Privacy</a>
-                <a class="btn outline" href="/contact">Contact Us</a>
-                <a class="btn primary" href="{{ route('get-started') }}">Get Started</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ route('home') }}" class="navbar-brand">
+                <img src="{{ asset('images/manapao-logo.jpg') }}" alt="MANAPAO Logo" class="navbar-logo">
+                <span class="navbar-text">MANAPAO BURFS</span>
+            </a>
+            <div class="nav-menu">
+                <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
+                <a href="{{ route('about') }}" class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">About</a>
+                <a href="{{ route('terms') }}" class="nav-link {{ request()->routeIs('terms') ? 'active' : '' }}">Terms</a>
+                <a href="{{ route('privacy') }}" class="nav-link {{ request()->routeIs('privacy') ? 'active' : '' }}">Privacy</a>
+                <a href="/contact" class="nav-link">Contact</a>
             </div>
-        </nav>
-
-        <!-- Hero Section -->
-        <header class="hero container">
-            <span class="badge">New Feature: Digital Certificate Management</span>
-            <h1>Modern <span class="accent">Barangay</span> Management</h1>
-            <p class="lead">Streamline your barangay operations with our digital platform. Manage residents, projects, and certificates efficiently.</p>
-            <a class="cta" href="{{ route('get-started') }}">Get Started</a>
-            <div class="hero-card">BarangayCloud Dashboard</div>
-        </header>
-
-        <!-- Features Section -->
-        <section class="features container">
-            <div class="feature-grid">
-                <article>
-                    <div class="icon">👥</div>
-                    <h4>Resident Management</h4>
-                    <p>Comprehensive database for all residents with household tracking, demographics, and document management.</p>
-                </article>
-                <article>
-                    <div class="icon">📄</div>
-                    <h4>Certificate Issuance</h4>
-                    <p>Digital certificate generation for barangay clearance, business permits, and official documents.</p>
-                </article>
-                <article>
-                    <div class="icon">🏷️</div>
-                    <h4>Business Registration</h4>
-                    <p>Streamlined business permit application and renewal with fee calculation and tracking.</p>
-                </article>
-                <article>
-                    <div class="icon">📝</div>
-                    <h4>Blotter Management</h4>
-                    <p>Digital incident reporting and case management system for maintaining peace and order.</p>
-                </article>
-                <article>
-                    <div class="icon">📊</div>
-                    <h4>Project Tracking</h4>
-                    <p>Monitor community projects, budgets, and progress with reporting.</p>
-                </article>
-                <article>
-                    <div class="icon">📍</div>
-                    <h4>Zone Management</h4>
-                    <p>Organize your barangay into zones with dedicated officials and streamlined administration.</p>
-                </article>
+            <div class="nav-buttons">
+                <a href="{{ route('login') }}" class="btn btn-secondary">Login</a>
+                <a href="{{ route('get-started') }}" class="btn btn-primary">Sign Up</a>
             </div>
-        </section>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-        <!-- How It Works Section -->
-        <section class="how-it-works container">
-            <h2>How It Works</h2>
-            <p class="sub">Get started with BarangayCloud in three simple steps</p>
-            <div class="steps">
-                <div class="step">
-                    <div class="num">1</div>
-                    <strong>Setup Your Barangay</strong>
-                    <p>Configure barangay information, zones, and initial settings.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="bi bi-lightning-fill"></i> New: Advanced Reporting System
                 </div>
-                <div class="step">
-                    <div class="num">2</div>
-                    <strong>Import Resident Data</strong>
-                    <p>Import existing records or start fresh with our data entry system.</p>
+                <h1 class="hero-title">Transform Your Barangay Management</h1>
+                <p class="hero-subtitle">Streamline resident feedback, manage issues efficiently, and build stronger community engagement with MANAPAO BURFS.</p>
+                <div class="hero-buttons">
+                    <a href="{{ route('get-started') }}" class="btn btn-primary btn-lg">
+                        <i class="bi bi-rocket-takeoff"></i> Get Started Free
+                    </a>
+                    <a href="#features" class="btn btn-outline btn-lg">
+                        <i class="bi bi-play-circle"></i> Watch Demo
+                    </a>
                 </div>
-                <div class="step">
-                    <div class="num">3</div>
-                    <strong>Start Managing</strong>
-                    <p>Begin issuing certificates, managing businesses, and serving your community.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <strong>500+</strong>
+                        <span>Barangays</span>
+                    </div>
+                    <div class="stat">
+                        <strong>50K+</strong>
+                        <span>Active Users</span>
+                    </div>
+                    <div class="stat">
+                        <strong>99.9%</strong>
+                        <span>Uptime</span>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section class="testimonials container">
-            <h2>What Our Users Say</h2>
-            <div class="test-grid">
-                <div class="test">
-                    <div class="avatar">MC</div>
-                    <h5>Maria Cruz</h5>
-                    <p>"BarangayCloud has revolutionized how we serve our community."</p>
-                </div>
-                <div class="test">
-                    <div class="avatar">JS</div>
-                    <h5>Juan Santos</h5>
-                    <p>"Digital transformation has been incredible. Track projects and generate reports in minutes."</p>
-                </div>
-                <div class="test">
-                    <div class="avatar">AR</div>
-                    <h5>Ana Reyes</h5>
-                    <p>"Business permit processing is seamless with automated fee calculation."</p>
+            <div class="hero-image">
+                <div class="hero-visual">
+                    <i class="bi bi-graph-up"></i>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Call to Action -->
-        <section class="cta-band container">
-            <h2>Ready to Transform Your Barangay?</h2>
-            <p>Join hundreds of barangays already using BarangayCloud to serve their communities better.</p>
-            <div class="cta-buttons">
-                <a class="btn primary" href="/trial">Start Free Trial</a>
-                <a class="btn" href="/demo">Watch Demo</a>
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="features-container">
+            <div class="section-header">
+                <h2>Powerful Features for Better Management</h2>
+                <p>Everything you need to manage your barangay efficiently and effectively</p>
             </div>
-        </section>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-chat-dots"></i>
+                    </div>
+                    <h3>Feedback Management</h3>
+                    <p>Centralized system for residents to submit concerns and track issues with full history and status updates.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-file-earmark-check"></i>
+                    </div>
+                    <h3>Issue Resolution</h3>
+                    <p>Efficiently manage and resolve resident issues with transparent tracking and accountability measures.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-megaphone"></i>
+                    </div>
+                    <h3>Community Updates</h3>
+                    <p>Share announcements and updates instantly with clear notifications reaching all community members.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h3>Incident Management</h3>
+                    <p>Digital incident reporting system with status tracking for maintaining peace and order in communities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-bar-chart"></i>
+                    </div>
+                    <h3>Project Monitoring</h3>
+                    <p>Track projects, budgets, and progress with comprehensive reports for better decision-making.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-geo-alt"></i>
+                    </div>
+                    <h3>Zone Management</h3>
+                    <p>Organize barangay into zones with assigned officials and clear communication channels.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <footer class="site-footer container">
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="how-container">
+            <div class="section-header">
+                <h2>Getting Started is Easy</h2>
+                <p>Simple 3-step process to transform your barangay management</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <h3>Create Account</h3>
+                    <p>Sign up and set up your barangay profile with essential information and contact details.</p>
+                    <div class="step-icon">
+                        <i class="bi bi-person-plus"></i>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h3>Configure System</h3>
+                    <p>Import resident data, set up zones, and assign officials to their respective areas.</p>
+                    <div class="step-icon">
+                        <i class="bi bi-gear"></i>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3>Start Managing</h3>
+                    <p>Residents submit feedback, officials manage issues, and community stays informed.</p>
+                    <div class="step-icon">
+                        <i class="bi bi-rocket"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="benefits-container">
+            <div class="benefits-content">
+                <h2>Why Choose MANAPAO BURFS?</h2>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <i class="bi bi-check-circle"></i>
+                        <div>
+                            <h4>Increased Transparency</h4>
+                            <p>Real-time tracking and reporting for complete accountability</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="bi bi-check-circle"></i>
+                        <div>
+                            <h4>Time Saving</h4>
+                            <p>Automate routine tasks and focus on community needs</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="bi bi-check-circle"></i>
+                        <div>
+                            <h4>Better Engagement</h4>
+                            <p>Foster stronger connections between officials and residents</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="bi bi-check-circle"></i>
+                        <div>
+                            <h4>Data Security</h4>
+                            <p>Enterprise-grade security for sensitive community data</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="bi bi-check-circle"></i>
+                        <div>
+                            <h4>Easy Integration</h4>
+                            <p>Seamless integration with existing systems and workflows</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="bi bi-check-circle"></i>
+                        <div>
+                            <h4>24/7 Support</h4>
+                            <p>Dedicated support team available round the clock</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="benefits-image">
+                <div class="benefits-visual">
+                    <i class="bi bi-shield"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <div class="section-header">
+                <h2>Trusted by Barangay Leaders</h2>
+                <p>See how MANAPAO BURFS is making a difference</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <p>"MANAPAO BURFS has completely transformed how we communicate with our community. Response times are faster and residents feel heard."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MC</div>
+                        <div>
+                            <strong>Maria Cruz</strong>
+                            <span>Barangay Captain</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <p>"The reporting features are exceptional. Generating monthly reports that used to take hours now takes minutes. Highly recommended!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JS</div>
+                        <div>
+                            <strong>Juan Santos</strong>
+                            <span>Barangay Secretary</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <p>"Best investment we've made for our barangay. The system is intuitive, reliable, and our residents love the transparency."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AR</div>
+                        <div>
+                            <strong>Angela Rodriguez</strong>
+                            <span>Barangay Treasurer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Revolutionize Your Barangay?</h2>
+            <p>Join hundreds of barangays already using MANAPAO BURFS to serve their communities better.</p>
+            <a href="{{ route('get-started') }}" class="btn btn-primary btn-lg">Start Your Free Trial Today</a>
+            <p class="cta-note">No credit card required • 30-day free trial • Full feature access</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
             <div class="footer-grid">
-                <div class="brand">
-                    <strong>BarangayCloud</strong>
-                    <p>Modern digital solutions for efficient barangay management.</p>
+                <div class="footer-col">
+                    <h4>MANAPAO BURFS</h4>
+                    <p>Modern solutions for efficient barangay management and community engagement.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
                 </div>
-                <div class="links">
-                    <div>Product<br>Features · How it Works · Pricing</div>
-                    <div>Company<br>About · Careers · Contact</div>
-                    <div>Legal<br>Terms · Privacy</div>
+                <div class="footer-col">
+                    <h5>Product</h5>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Updates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="{{ route('about') }}">About</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="{{ route('terms') }}">Terms of Service</a></li>
+                        <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
                 </div>
             </div>
-            <p class="footer-bottom">© {{ date('Y') }} BarangayCloud. All rights reserved.</p>
-        </footer>
-    </div>
+            <div class="footer-bottom">
+                <p>&copy; {{ date('Y') }} MANAPAO BURFS. All rights reserved.</p>
+                <p>Designed for Filipino Communities | Made with <i class="bi bi-heart-fill"></i> for the Philippines</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Resolution;
 
 class ResolutionController extends Controller
 {
     public function index()
     {
         // Fetch resolutions from DB
-        // $resolutions = Resolution::all();
+        $resolutions = Resolution::latest()->get();
 
-        return view('dashboard.resolutions.index'); // plural folder
+        return view('dashboard.resolutions.index', compact('resolutions')); // plural folder
     }
 
     public function create()

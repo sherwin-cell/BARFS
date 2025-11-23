@@ -3,76 +3,203 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BarangayCloud — Contact Us</title>
+    <title>Contact Us - MANAPAO BURFS</title>
 
     <!-- CSS -->
     <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
-    <div class="bc-contact">
-
-        <!-- Top Navigation -->
-        <nav class="topbar container">
-            <a href="{{ route('home') }}" class="logo">BarangayCloud</a>
-            <div class="nav-right">
-                <a href="{{ route('home') }}" class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
-                <a href="{{ route('about') }}" class="nav-item {{ request()->routeIs('about') ? 'active' : '' }}">About</a>
-                <a href="{{ route('terms') }}" class="nav-item {{ request()->routeIs('terms') ? 'active' : '' }}">Terms</a>
-                <a href="{{ route('privacy') }}" class="nav-item {{ request()->routeIs('privacy') ? 'active' : '' }}">Privacy</a>
-                <a href="{{ route('contact') }}" class="nav-item {{ request()->routeIs('contact') ? 'active' : '' }}">Contact Us</a>
-                <a class="btn primary" href="{{ route('get-started') }}">Get Started</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ route('home') }}" class="navbar-brand">
+                <img src="{{ asset('images/manapao-logo.jpg') }}" alt="MANAPAO Logo" class="navbar-logo">
+                <span class="navbar-text">MANAPAO BURFS</span>
+            </a>
+            <div class="nav-menu">
+                <a href="{{ route('home') }}" class="nav-link">Home</a>
+                <a href="{{ route('about') }}" class="nav-link">About</a>
+                <a href="{{ route('terms') }}" class="nav-link">Terms</a>
+                <a href="{{ route('privacy') }}" class="nav-link">Privacy</a>
+                <a href="/contact" class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
             </div>
-        </nav>
+            <div class="nav-buttons">
+                <a href="{{ route('login') }}" class="btn btn-secondary">Login</a>
+                <a href="{{ route('get-started') }}" class="btn btn-primary">Sign Up</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-        <!-- Hero Section -->
-        <header class="hero container">
-            <h1>Contact <span class="accent">Us</span></h1>
-            <p class="lead">Have questions or need support? Fill out the form below and we’ll get back to you as soon as possible.</p>
-        </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Contact Us</h1>
+                <p class="hero-subtitle">Have questions or need support? We're here to help. Get in touch with our team.</p>
+            </div>
+        </div>
+    </section>
 
-        <!-- Contact Form -->
-        <section class="features container">
-            @if(session('success'))
-                <div class="alert success">
-                    {{ session('success') }}
+    <!-- Contact Section -->
+    <section class="features">
+        <div class="features-container">
+            <div class="contact-wrapper">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="bi bi-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:support@manapaoburfs.com">support@manapaoburfs.com</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="bi bi-telephone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p><a href="tel:+63212345678">(+63) 2 1234-5678</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="bi bi-geo-alt"></i>
+                            <div>
+                                <h4>Address</h4>
+                                <p>Manila, Philippines</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="bi bi-clock"></i>
+                            <div>
+                                <h4>Hours</h4>
+                                <p>Monday - Friday: 9AM - 6PM (PST)</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            @endif
 
-            <form action="{{ route('contact.submit') }}" method="POST" class="contact-form">
-                @csrf
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" name="name" id="name" placeholder="Your full name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" name="email" id="email" placeholder="Your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea name="message" id="message" placeholder="Write your message here..." rows="6" required></textarea>
-                </div>
-                <button type="submit" class="btn primary">Send Message</button>
-            </form>
-        </section>
+                <!-- Contact Form -->
+                <div class="contact-form-wrapper">
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            <i class="bi bi-check-circle"></i>
+                            {{ session('success') }}
+                        </div>
+                    @endif
 
-        <!-- Footer -->
-        <footer class="site-footer container">
+                    @if($errors->any())
+                        <div class="alert alert-error">
+                            <i class="bi bi-exclamation-circle"></i>
+                            Please check the errors below
+                        </div>
+                    @endif
+
+                    <form action="{{ route('contact.submit') }}" method="POST" class="contact-form">
+                        @csrf
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your full name" value="{{ old('name') }}" required>
+                            @error('name')<span class="error-text">{{ $message }}</span>@enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Your email address" value="{{ old('email') }}" required>
+                            @error('email')<span class="error-text">{{ $message }}</span>@enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number (Optional)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Your phone number" value="{{ old('phone') }}">
+                            @error('phone')<span class="error-text">{{ $message }}</span>@enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="What is this about?" value="{{ old('subject') }}" required>
+                            @error('subject')<span class="error-text">{{ $message }}</span>@enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Your message here..." rows="6" required>{{ old('message') }}</textarea>
+                            @error('message')<span class="error-text">{{ $message }}</span>@enderror
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-send"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Barangay?</h2>
+            <p>Don't hesitate to reach out. Our team is ready to help you get started.</p>
+            <a href="{{ route('get-started') }}" class="btn btn-primary btn-lg">Get Started Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
             <div class="footer-grid">
-                <div class="brand">
-                    <strong>BarangayCloud</strong>
-                    <p>Modern digital solutions for efficient barangay management.</p>
+                <div class="footer-col">
+                    <h4>MANAPAO BURFS</h4>
+                    <p>Modern solutions for efficient barangay management and community engagement.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
                 </div>
-                <div class="links">
-                    <div>Product<br>Features · How it Works · Pricing</div>
-                    <div>Company<br>About · Careers · Contact</div>
-                    <div>Legal<br>Terms · Privacy</div>
+                <div class="footer-col">
+                    <h5>Product</h5>
+                    <ul>
+                        <li><a href="{{ route('home') }}#features">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Updates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="{{ route('about') }}">About</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="{{ route('terms') }}">Terms of Service</a></li>
+                        <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
                 </div>
             </div>
-            <p class="footer-bottom">© {{ date('Y') }} BarangayCloud. All rights reserved.</p>
-        </footer>
-
-    </div>
+            <div class="footer-bottom">
+                <p>&copy; {{ date('Y') }} MANAPAO BURFS. All rights reserved.</p>
+                <p>Designed for Filipino Communities | Made with <i class="bi bi-heart-fill"></i> for the Philippines</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
