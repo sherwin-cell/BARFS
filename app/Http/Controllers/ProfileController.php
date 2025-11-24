@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     // Show the edit form
     public function edit()
     {
@@ -14,7 +19,7 @@ class ProfileController extends Controller
         return view('dashboard.profile.edit', compact('user'));
     }
 
-    // Update the profile
+    // Update the profile - FIXED to work for both admin and user
     public function update(Request $request)
     {
         $user = Auth::user();
@@ -29,6 +34,11 @@ class ProfileController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect()->route('dashboard')->with('success', 'Profile updated successfully.');
+        // Redirect to appropriate dashboard based on role
+        $redirectRoute = $user->role === 'admin' 
+            ? route('dashboard') 
+            : route('user.dashboard');
+
+        return redirect($redirectRoute)->with('success', 'Profile updated successfully.');
     }
 }

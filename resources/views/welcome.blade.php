@@ -26,8 +26,7 @@
                 <a href="/contact" class="nav-link">Contact</a>
             </div>
             <div class="nav-buttons">
-                <a href="{{ route('login') }}" class="btn btn-secondary">Login</a>
-                <a href="{{ route('get-started') }}" class="btn btn-primary">Sign Up</a>
+                <a href="{{ route('get-started') }}" class="btn btn-primary">Get Started</a>
             </div>
             <div class="hamburger">
                 <span></span>

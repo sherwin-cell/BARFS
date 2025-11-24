@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | BARFS</title>
 
+    <!-- CSRF (prevents 419 errors) -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
@@ -17,11 +20,12 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
+
 <body>
 
 <div class="page-wrapper">
 
-    <!-- LEFT SIDE: background + top-left logo -->
+    <!-- LEFT SIDE -->
     <div class="left-side">
         <div class="top-left-logo">
             <img src="{{ asset('images/manapao-logo.jpg') }}" alt="Logo">
@@ -29,11 +33,12 @@
         </div>
     </div>
 
-    <!-- RIGHT SIDE: LOGIN FORM -->
+    <!-- RIGHT SIDE -->
     <div class="right-side">
         <div class="card">
             <h1>Login</h1>
 
+            <!-- ERROR MESSAGES -->
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul class="mb-0">
@@ -44,36 +49,52 @@
                 </div>
             @endif
 
+            <!-- LOGIN FORM -->
             <form action="{{ route('login.post') }}" method="POST">
                 @csrf
 
+                <!-- Email -->
                 <div class="mb-4">
-                    <label class="form-label" for="email"><i class="bi bi-envelope"></i> Email address</label>
+                    <label class="form-label" for="email">
+                        <i class="bi bi-envelope"></i> Email Address
+                    </label>
                     <div class="input-group">
                         <i class="bi bi-envelope input-group-icon"></i>
-                        <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email" class="form-control" required autofocus>
+                        <input type="email" id="email" name="email"
+                               value="{{ old('email') }}"
+                               placeholder="Enter your email"
+                               class="form-control" required autofocus>
                     </div>
                 </div>
 
+                <!-- Password -->
                 <div class="mb-4">
-                    <label class="form-label" for="password"><i class="bi bi-lock"></i> Password</label>
+                    <label class="form-label" for="password">
+                        <i class="bi bi-lock"></i> Password
+                    </label>
                     <div class="input-group">
                         <i class="bi bi-lock input-group-icon"></i>
-                        <input type="password" id="password" name="password" placeholder="Enter your password" class="form-control" required>
+                        <input type="password" id="password" name="password"
+                               placeholder="Enter your password"
+                               class="form-control" required>
                     </div>
                 </div>
 
+                <!-- Submit -->
                 <button type="submit" class="btn btn-primary w-100 mb-3">
-                    <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Login
                 </button>
             </form>
 
+            <!-- Links -->
             <p class="text-center mt-4 mb-2">
-                Don't have an account? <a href="{{ route('signup') }}">Sign Up</a>
+                Don't have an account?
+                <a href="{{ route('signup') }}">Sign Up</a>
             </p>
+
             <p class="text-center mt-2">
                 <a href="{{ url('/') }}">
-                    <i class="bi bi-arrow-left me-1"></i>Back to Home
+                    <i class="bi bi-arrow-left me-1"></i> Back to Home
                 </a>
             </p>
         </div>
@@ -81,6 +102,7 @@
 
 </div>
 
+<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

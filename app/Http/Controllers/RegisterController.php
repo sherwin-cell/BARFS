@@ -26,10 +26,11 @@ class RegisterController extends Controller
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
+            'role' => 'user', // 👈 Set default role
         ]);
 
         Auth::login($user);
 
-        return redirect()->route('dashboard')->with('success', 'Registration successful!');
+        return redirect()->route('user.dashboard')->with('success', 'Registration successful!');
     }
 }

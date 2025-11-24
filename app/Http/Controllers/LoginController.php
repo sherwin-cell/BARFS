@@ -9,13 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    // Show login page
     public function showLoginForm()
     {
-        return view('auth.login'); // Make sure this Blade exists
+        return view('auth.login');
     }
 
-    // Handle login
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -28,28 +26,35 @@ class LoginController extends Controller
         if (!$user) {
             return back()->withErrors([
                 'email' => 'Email not found.',
-            ])->withInput();
+            ])->onlyInput('email');
         }
 
         if (!Hash::check($credentials['password'], $user->password)) {
             return back()->withErrors([
                 'password' => 'Wrong password.',
-            ])->withInput();
+            ])->onlyInput('email');
         }
 
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard'));
-    }
+        $user = auth()->user();
 
-    // Handle logout
+        if ($user->role === 'admin') {
+            return redirect()->route('dashboard.index')->with('success', 'Welcome Admin!');
+        }
+
+        if ($user->role === 'user') {
+            return redirect()->route('user.dashboard')->with('success', 'Welcome User!');
+        }
+    }   // ← THIS WAS MISSING
+
     public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('success', 'Logged out successfully.');
+        return redirect()->route('home')->with('success', 'Logged out successfully.');
     }
 }
