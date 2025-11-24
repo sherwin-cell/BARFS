@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers;
 
@@ -8,6 +8,7 @@ class UserDashboardController extends Controller
 {
     public function index()
     {
-        return view('user.dashboard'); // Blade file for user dashboard
+        // Points to the new index.blade.php
+        return view('user.index');
     }
 }

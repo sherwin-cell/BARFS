@@ -9,7 +9,8 @@ use App\Http\Controllers\{
     UserDashboardController,
     ProfileController,
     AccountController,
-    ResolutionController
+    ResolutionController,
+    UpdateController
 };
 
 /*
@@ -52,37 +53,47 @@ Route::middleware(['auth', 'role:admin'])
     ->name('dashboard.')
     ->group(function () {
 
-        // Main Dashboard
+        // Dashboard homepage
         Route::get('/', [DashboardController::class, 'index'])->name('index');
 
-        // Resolutions
-        Route::prefix('resolutions')->name('resolutions.')->group(function () {
-            Route::get('/', [ResolutionController::class, 'index'])->name('index');
-            Route::get('/create', [ResolutionController::class, 'create'])->name('create');
-            Route::post('/', [ResolutionController::class, 'store'])->name('store');
-        });
-
-        // Feedbacks & Updates
-        Route::get('/feedbacks', [DashboardController::class, 'feedbacks'])->name('feedbacks');
-        Route::get('/updates', [DashboardController::class, 'updates'])->name('updates');
-
-        // Profile
+        // Profile management
         Route::prefix('profile')->name('profile.')->group(function () {
             Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
             Route::post('/update', [ProfileController::class, 'update'])->name('update');
         });
 
-        // Accounts
+        // Resolutions CRUD
+        Route::resource('resolutions', ResolutionController::class);
+
+        // Feedback page
+        Route::get('feedbacks', function () {
+            return view('dashboard.feedbacks.feedbacks');
+        })->name('feedbacks');
+
+        // Updates page **using your controller**
+        Route::get('updates', [UpdateController::class, 'index'])->name('updates');
+
+        // Accounts page
+        // Accounts management routes
         Route::prefix('accounts')->name('accounts.')->group(function () {
-            Route::get('/', fn() => view('dashboard.accounts.accounts'))->name('accounts');
+            Route::get('/', function () {
+                return view('dashboard.accounts.accounts');
+            })->name('index');
+
             Route::put('/update', [AccountController::class, 'update'])->name('update');
             Route::put('/password', [AccountController::class, 'updatePassword'])->name('password');
             Route::delete('/delete', [AccountController::class, 'destroy'])->name('delete');
         });
 
-        // Settings & Help
-        Route::view('/settings', 'dashboard.settings.settings')->name('settings');
-        Route::view('/help', 'dashboard.help.help')->name('help');
+        // Settings page
+        Route::get('settings', function () {
+            return view('dashboard.settings.settings');
+        })->name('settings');
+
+        // Help page
+        Route::get('help', function () {
+            return view('dashboard.help.help');
+        })->name('help');
     });
 
 /*
@@ -95,10 +106,19 @@ Route::middleware(['auth', 'role:user'])
     ->name('user.')
     ->group(function () {
 
+        // Dashboard
         Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
 
+        // User settings page
+        Route::get('/settings', function () {
+            return view('user.settings');
+        })->name('settings');
+
+        // Profile management
         Route::prefix('profile')->name('profile.')->group(function () {
             Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
-            Route::post('/update', [ProfileController::class, 'update'])->name('update');
+            Route::put('/update', [ProfileController::class, 'update'])->name('update');
+            Route::put('/password', [AccountController::class, 'updatePassword'])->name('password');
+            Route::delete('/delete', [AccountController::class, 'destroy'])->name('delete');
         });
-    });
+});

@@ -56,7 +56,7 @@
         <a href="#" class="btn btn-outline-primary">
             <i class="bi bi-file-earmark me-2"></i>View Issues
         </a>
-        <a href="{{ route('dashboard.settings.settings') }}" class="btn btn-outline-primary">
+        <a href="{{ route('user.settings') }}" class="btn btn-outline-primary">
             <i class="bi bi-gear me-2"></i>Settings
         </a>
     </div>

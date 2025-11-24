@@ -7,7 +7,7 @@
     <h1 class="page-title">Change Password</h1>
 
     <div class="account-container">
-        <form action="{{ route('accounts.password') }}" method="POST">
+        <form action="{{ route('dashboard.accounts.update') }}" method="POST">
             @csrf
             @method('PUT')
 

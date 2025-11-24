@@ -5,7 +5,6 @@
 @section('content')
 <div class="container-fluid py-4">
 
-    <!-- Page Header -->
     <div class="page-header">
         <div class="d-flex justify-content-between align-items-center">
             <div>
@@ -20,7 +19,6 @@
         </div>
     </div>
 
-    <!-- Stats Cards -->
     <div class="row mb-4">
         <div class="col-md-3 mb-3">
             <div class="professional-card text-center">
@@ -64,14 +62,12 @@
         </div>
     </div>
 
-    <!-- Main Row -->
     <div class="row">
-        <!-- Recent Resolutions -->
         <div class="col-lg-8 mb-4">
             <div class="card shadow-sm">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Recent Resolutions</h5>
-                    <a href="{{ route('dashboard.resolutions') }}" class="btn btn-sm btn-outline-primary">
+                    <a href="{{ route('dashboard.resolutions.index') }}" class="btn btn-sm btn-outline-primary">
                         <i class="bi bi-arrow-right me-1"></i>View All
                     </a>
                 </div>
@@ -127,7 +123,6 @@
             </div>
         </div>
 
-        <!-- Quick Actions & Recent Activity -->
         <div class="col-lg-4 mb-4">
             <div class="card shadow-sm mb-3">
                 <div class="card-header">
@@ -143,7 +138,7 @@
                     <a href="{{ route('dashboard.updates') }}" class="btn btn-outline-primary w-100">
                         <i class="bi bi-bell"></i> View Updates
                     </a>
-                    <a href="{{ route('dashboard.accounts.accounts') }}" class="btn btn-outline-primary w-100">
+                    <a href="{{ route('dashboard.accounts.index') }}" class="btn btn-outline-primary w-100">
                         <i class="bi bi-person-circle"></i> Account Settings
                     </a>
                 </div>
@@ -177,7 +172,6 @@
         </div>
     </div>
 
-    <!-- Charts Row -->
     <div class="row">
         <div class="col-lg-6 mb-4">
             <div class="card shadow-sm">

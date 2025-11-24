@@ -9,7 +9,7 @@
     <div class="account-container danger">
         <p>Warning: Deleting your account is permanent and cannot be undone.</p>
 
-        <form action="{{ route('accounts.delete') }}" method="POST">
+        <form action="{{ route('dashboard.accounts.delete') }}" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn-danger">Delete Account</button>

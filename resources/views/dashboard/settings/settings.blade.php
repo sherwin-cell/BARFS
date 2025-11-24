@@ -16,7 +16,8 @@
             <i class="bi bi-gear me-2"></i>General Settings
         </h2>
         <div class="list-group">
-            <a href="{{ route('dashboard.accounts.accounts') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <!-- Edit Profile -->
+            <a href="{{ route('dashboard.accounts.index') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                 <div>
                     <i class="bi bi-person-circle me-2"></i>
                     <strong>Edit Profile</strong>
@@ -24,7 +25,9 @@
                 </div>
                 <i class="bi bi-chevron-right"></i>
             </a>
-            <a href="{{ route('dashboard.accounts.accounts') }}#password" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+
+            <!-- Change Password -->
+            <a href="{{ route('dashboard.accounts.index') }}#password" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                 <div>
                     <i class="bi bi-shield-lock me-2"></i>
                     <strong>Change Password</strong>
@@ -32,6 +35,8 @@
                 </div>
                 <i class="bi bi-chevron-right"></i>
             </a>
+
+            <!-- Notifications (example, placeholder) -->
             <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                 <div>
                     <i class="bi bi-bell me-2"></i>
@@ -43,7 +48,7 @@
         </div>
     </div>
 
-    <!-- Privacy Settings Section -->
+    <!-- Privacy & Security Section -->
     <div class="section-container">
         <h2 class="section-title">
             <i class="bi bi-shield-check me-2"></i>Privacy & Security
@@ -57,6 +62,7 @@
                 </div>
                 <i class="bi bi-chevron-right"></i>
             </a>
+
             <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                 <div>
                     <i class="bi bi-lock me-2"></i>
@@ -68,12 +74,13 @@
         </div>
     </div>
 
-    <!-- Account Section -->
+    <!-- Account Management Section -->
     <div class="section-container danger-zone">
-        <h2 class="section-title" style="color: #dc3545; border-bottom-color: #dc3545;">
+        <h2 class="section-title text-danger" style="border-bottom-color: #dc3545;">
             <i class="bi bi-exclamation-triangle me-2"></i>Account Management
         </h2>
         <div class="list-group">
+            <!-- Deactivate Account (placeholder) -->
             <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center text-danger">
                 <div>
                     <i class="bi bi-pause-circle me-2"></i>
@@ -82,6 +89,8 @@
                 </div>
                 <i class="bi bi-chevron-right"></i>
             </a>
+
+            <!-- Log Out -->
             <form action="{{ route('logout') }}" method="POST" class="mb-0">
                 @csrf
                 <button type="submit" class="list-group-item list-group-item-action w-100 text-start d-flex justify-content-between align-items-center text-danger border-0 bg-transparent" style="padding: 0.75rem 1.25rem;">

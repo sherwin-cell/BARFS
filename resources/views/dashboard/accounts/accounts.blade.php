@@ -15,7 +15,7 @@
         <h2 class="section-title">
             <i class="bi bi-person-circle me-2"></i>Profile Information
         </h2>
-        <form action="{{ route('accounts.update') }}" method="POST" class="professional-form">
+        <form action="{{ route('dashboard.accounts.update') }}" method="POST" class="professional-form">
             @csrf
             @method('PUT')
 
@@ -40,7 +40,7 @@
         <h2 class="section-title">
             <i class="bi bi-shield-lock me-2"></i>Change Password
         </h2>
-        <form action="{{ route('accounts.password') }}" method="POST" class="professional-form">
+        <form action="{{ route('dashboard.accounts.password') }}" method="POST" class="professional-form">
             @csrf
             @method('PUT')
 
@@ -71,7 +71,7 @@
             <i class="bi bi-exclamation-triangle me-2"></i>Danger Zone
         </h2>
         <p style="color: #721c24; margin-bottom: 1.5rem;">Deleting your account is permanent and cannot be undone. All your data will be permanently removed.</p>
-        <form action="{{ route('accounts.delete') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+        <form action="{{ route('dashboard.accounts.delete') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">
