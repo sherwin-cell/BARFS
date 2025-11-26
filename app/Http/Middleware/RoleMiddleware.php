@@ -25,17 +25,20 @@ class RoleMiddleware
 
         $user = Auth::user();
 
-        // If role parameter is provided, check it
-        if ($role && $user->role !== $role) {
-            // Redirect based on user role
-            if ($user->role === 'admin') {
+        // Check role if provided (case-insensitive)
+        if ($role && strtolower($user->role) !== strtolower($role)) {
+            // Option 1: Redirect based on role
+            if (strtolower($user->role) === 'admin') {
                 return redirect()->route('dashboard.index')->with('error', 'Unauthorized access.');
-            } else {
-                return redirect()->route('user.dashboard')->with('error', 'Unauthorized access.');
             }
+
+            return redirect()->route('user.dashboard')->with('error', 'Unauthorized access.');
+
+            // Option 2: Strict 403 instead of redirect
+            // abort(403, 'Unauthorized action.');
         }
 
-        // Continue request
+        // Role matches, allow request
         return $next($request);
     }
 }

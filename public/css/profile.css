@@ -1,27 +1,72 @@
-/* Avatar Styles */
+/* ===========================
+   Avatar Circle
+   =========================== */
 .avatar-circle {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     background: #0d6efd;
-    color: white;
+    color: #fff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
     font-size: 18px;
+    user-select: none;
 }
 
-/* Dropdown Menu */
-.dropdown-menu {
+/* ===========================
+   Dropdown Menu Container
+   =========================== */
+.profile-dropdown.dropdown-menu {
     width: 260px;
-    border-radius: 10px;
+    border-radius: 12px;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-.dropdown-item {
-    padding: 10px 16px;
+/* ===========================
+   User Info Section
+   =========================== */
+.profile-dropdown .user-info {
+    background: #f8fafc;
 }
 
-.dropdown-item:hover {
+.profile-dropdown .username {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.profile-dropdown small {
+    font-size: 0.82rem;
+    color: #6c757d;
+}
+
+/* ===========================
+   Dropdown Items
+   =========================== */
+.profile-dropdown .dropdown-item {
+    padding: 12px 18px;
+    font-size: 0.95rem;
+}
+
+.profile-dropdown .dropdown-item i {
+    font-size: 1rem;
+}
+
+.profile-dropdown .dropdown-item:hover {
     background: #f1f5f9;
+}
+
+/* Logout button styling */
+.profile-dropdown .dropdown-item.text-danger {
+    font-weight: 600;
+}
+
+/* Disable outline on avatar / toggle */
+#userDropdown:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }

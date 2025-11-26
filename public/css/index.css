@@ -29,9 +29,9 @@
     width: 300px;
     border-radius: 14px;
     padding-top: 0;
+    background-color: #fff;
     box-shadow: 0 12px 28px rgba(0,0,0,0.15);
     animation: fadeSlide 0.25s ease-in-out;
-    background-color: #fff;
 }
 
 .user-info {
@@ -53,8 +53,8 @@
     padding: 14px 20px;
     font-size: 15px;
     color: #212529;
-    transition: all 0.3s ease;
     border-radius: 6px;
+    transition: all 0.3s ease;
 }
 
 .dropdown-item:hover {
@@ -85,8 +85,8 @@
 .dashboard-header {
     background: linear-gradient(135deg, #0d6efd, #0b5ed7);
     border-radius: 18px;
-    color: #fff;
     padding: 28px 24px;
+    color: #fff;
     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -104,7 +104,6 @@
 
 .dashboard-header .subtitle {
     font-size: 16px;
-    font-weight: 400;
     opacity: 0.85;
 }
 
@@ -125,34 +124,21 @@
 .row.features-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem; /* space between cards */
+    gap: 1rem;
 }
 
 .feature-card {
-    flex: 1 1 0; /* allow cards to grow equally */
-    border-radius: 14px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px;
+    flex: 1 1 0;
     background-color: #fff;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-
-    /* Ensure all cards in the same row have same height */
+    border-radius: 14px;
+    padding: 16px;
+    min-height: 220px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 220px; /* or whatever fixed height you need */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.feature-card {
-    height: 100%; /* makes the card fill the column */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* keeps spacing consistent */
-}
-
 
 .feature-card:hover {
     transform: translateY(-6px);
@@ -175,7 +161,7 @@
 }
 
 /* ==============================
-   Card Text & Buttons
+   Text & Buttons
 ============================== */
 .card-title {
     font-size: 16px;
@@ -185,17 +171,17 @@
 
 .card-text {
     font-size: 13px;
-    text-align: center;
     color: #6c757d;
+    text-align: center;
     margin-bottom: 12px;
 }
 
 .btn-outline-primary {
+    width: 100%;
+    padding: 6px 12px;
     font-size: 13px;
     font-weight: 500;
-    padding: 6px 12px;
     border-radius: 6px;
-    width: 100%;
     transition: all 0.3s ease;
 }
 

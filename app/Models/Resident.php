@@ -9,9 +9,10 @@ class Resident extends Model
 {
     use HasFactory;
 
+    // Fillable fields (match your table columns)
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'address',
-        'contact',
     ];
 }

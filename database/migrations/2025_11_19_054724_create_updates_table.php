@@ -1,30 +1,73 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace App\Http\Controllers;
 
-return new class extends Migration
+use Illuminate\Http\Request;
+use App\Models\Update;
+
+class UpdateController extends Controller
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    // Show all updates
+    public function index()
     {
-        Schema::create('updates', function (Blueprint $table) {
-            $table->id();                        // Primary key
-            $table->string('title');             // Title of the update/issue
-            $table->text('description');         // Detailed description
-            $table->string('status')->default('pending'); // Status: pending, resolved, etc.
-            $table->timestamps();                // created_at & updated_at
-        });
+        $updates = Update::latest()->get();
+        return view('updates.index', compact('updates'));
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    // Show form to create an update
+    public function create()
     {
-        Schema::dropIfExists('updates');
+        return view('updates.create');
     }
-};
+
+    // Store a new update
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'status' => 'required|in:update,announcement',
+        ]);
+
+        Update::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('updates.index')->with('success', 'Update created successfully!');
+    }
+
+    // Show a single update
+    public function show(Update $update)
+    {
+        return view('updates.show', compact('update'));
+    }
+
+    // Edit form
+    public function edit(Update $update)
+    {
+        return view('updates.edit', compact('update'));
+    }
+
+    // Update an existing update
+    public function update(Request $request, Update $update)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'status' => 'required|in:update,announcement',
+        ]);
+
+        $update->update($request->all());
+
+        return redirect()->route('updates.index')->with('success', 'Update updated successfully!');
+    }
+
+    // Delete
+    public function destroy(Update $update)
+    {
+        $update->delete();
+        return redirect()->route('updates.index')->with('success', 'Update deleted successfully!');
+    }
+}

@@ -1,90 +1,65 @@
-@extends('dashboard.layout')
+@extends('dashboard.layout') <!-- Main layout -->
 
-@section('title', 'Feedback')
+@section('title', 'Resident Feedbacks')
 
 @section('content')
-
+<div class="container py-4">
     <!-- Page Header -->
-    <div class="page-header">
-        <h1>Resident Feedback</h1>
-        <p>Review feedback submitted by residents and respond accordingly</p>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">Resident Feedbacks</h1>
+        <p class="text-muted">View all feedback submitted by residents</p>
     </div>
 
-    <!-- Feedbacks Table -->
-    @if($feedbacks ?? false)
-        <div class="professional-table">
-            <table class="table table-hover align-middle mb-0">
+    <!-- Feedback Table -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-bordered table-striped align-middle">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Resident Name</th>
                         <th>Email</th>
+                        <th>Resolution</th> <!-- New column -->
                         <th>Message</th>
-                        <th>Date Submitted</th>
                         <th>Status</th>
-                        <th class="text-end">Actions</th>
+                        <th>Date</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($feedbacks as $feedback)
-                        <tr>
-                            <td class="fw-bold" style="color: #0b95bf;">{{ $feedback->id }}</td>
-                            <td>
-                                <strong style="color: #2c3e50;">{{ $feedback->name }}</strong>
-                            </td>
-                            <td>
-                                <i class="bi bi-envelope me-1" style="color: #6c757d;"></i>
-                                {{ $feedback->email }}
-                            </td>
-                            <td>
-                                <span style="max-width: 300px; display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="{{ $feedback->message }}">
-                                    {{ $feedback->message }}
-                                </span>
-                            </td>
-                            <td>
-                                <i class="bi bi-calendar3 me-1" style="color: #6c757d;"></i>
-                                {{ $feedback->created_at->format('M d, Y') }}
-                            </td>
-                            <td>
-                                <span class="status-badge {{ strtolower($feedback->status) }}">
-                                    {{ ucfirst($feedback->status) }}
-                                </span>
-                            </td>
-                            <td class="text-end">
-                                <a href="#" class="action-btn btn btn-sm btn-outline-primary me-1">
-                                    <i class="bi bi-eye"></i> View
-                                </a>
-                                <a href="#" class="action-btn btn btn-sm btn-outline-success">
-                                    <i class="bi bi-reply"></i> Reply
-                                </a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>{{ $feedback->id }}</td>
+                        <td>{{ $feedback->user->name ?? 'N/A' }}</td>
+                        <td>{{ $feedback->user->email ?? 'N/A' }}</td>
+                        <td>{{ $feedback->resolution->title ?? 'N/A' }}</td> <!-- Resolution title -->
+                        <td>{{ $feedback->message }}</td>
+                        <td>
+                            @if($feedback->status === 'replied')
+                                <span class="badge bg-success">{{ ucfirst($feedback->status) }}</span>
+                            @else
+                                <span class="badge bg-warning text-dark">{{ ucfirst($feedback->status) }}</span>
+                            @endif
+                        </td>
+                        <td>{{ $feedback->created_at->format('M d, Y') }}</td>
+                        <td>
+                            <a href="{{ route('dashboard.feedbacks.show', $feedback->id) }}" class="btn btn-sm btn-primary">View</a>
+                            <a href="{{ route('dashboard.feedbacks.reply', $feedback->id) }}" class="btn btn-sm btn-success">Reply</a>
+                        </td>
+                    </tr>
                     @empty
-                        <tr>
-                            <td colspan="7">
-                                <div class="empty-state">
-                                    <div class="empty-state-icon">
-                                        <i class="bi bi-chat-dots"></i>
-                                    </div>
-                                    <h3>No Feedback Available</h3>
-                                    <p>No resident feedback has been submitted yet.</p>
-                                </div>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td colspan="8" class="text-center text-muted">No feedback available.</td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>
-        </div>
-    @else
-        <div class="professional-card">
-            <div class="empty-state">
-                <div class="empty-state-icon">
-                    <i class="bi bi-chat-dots"></i>
-                </div>
-                <h3>No Feedback Available</h3>
-                <p>No feedback available at the moment.</p>
+
+            <!-- Pagination -->
+            <div class="mt-3">
+                {{ $feedbacks->links() }}
             </div>
         </div>
-    @endif
-
+    </div>
+</div>
 @endsection

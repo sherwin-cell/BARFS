@@ -3,10 +3,10 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="container-fluid py-4">
+    <div class="container-fluid py-4">
 
-    <div class="page-header">
-        <div class="d-flex justify-content-between align-items-center">
+        <!-- Page Header -->
+        <div class="page-header mb-4 d-flex justify-content-between align-items-center">
             <div>
                 <h1>Dashboard</h1>
                 <p class="mb-0">Welcome back! Here's your barangay overview</p>
@@ -17,220 +17,232 @@
                 </span>
             </div>
         </div>
-    </div>
 
-    <div class="row mb-4">
-        <div class="col-md-3 mb-3">
-            <div class="professional-card text-center">
-                <div class="mb-3">
-                    <i class="bi bi-hourglass-split" style="font-size: 2.5rem; color: #ffc107;"></i>
-                </div>
-                <h6 class="fw-bold mb-2" style="color: #6c757d; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Pending Resolutions</h6>
-                <p class="display-4 fw-bold mb-1" style="color: #ffc107;">{{ $pendingResolutions ?? 0 }}</p>
-                <small class="text-muted">Awaiting approval</small>
-            </div>
-        </div>
-        <div class="col-md-3 mb-3">
-            <div class="professional-card text-center">
-                <div class="mb-3">
-                    <i class="bi bi-check-circle" style="font-size: 2.5rem; color: #28a745;"></i>
-                </div>
-                <h6 class="fw-bold mb-2" style="color: #6c757d; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Approved</h6>
-                <p class="display-4 fw-bold mb-1" style="color: #28a745;">{{ $approvedResolutions ?? 0 }}</p>
-                <small class="text-muted">Passed resolutions</small>
-            </div>
-        </div>
-        <div class="col-md-3 mb-3">
-            <div class="professional-card text-center">
-                <div class="mb-3">
-                    <i class="bi bi-chat-dots" style="font-size: 2.5rem; color: #0b95bf;"></i>
-                </div>
-                <h6 class="fw-bold mb-2" style="color: #6c757d; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Feedback</h6>
-                <p class="display-4 fw-bold mb-1" style="color: #0b95bf;">{{ $feedbackCount ?? 0 }}</p>
-                <small class="text-muted">New submissions</small>
-            </div>
-        </div>
-        <div class="col-md-3 mb-3">
-            <div class="professional-card text-center">
-                <div class="mb-3">
-                    <i class="bi bi-exclamation-triangle" style="font-size: 2.5rem; color: #dc3545;"></i>
-                </div>
-                <h6 class="fw-bold mb-2" style="color: #6c757d; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Open Issues</h6>
-                <p class="display-4 fw-bold mb-1" style="color: #dc3545;">{{ $openIssues ?? 0 }}</p>
-                <small class="text-muted">Needs attention</small>
-            </div>
-        </div>
-    </div>
+        <!-- Stats Cards -->
+        <div class="row mb-4 text-center">
 
-    <div class="row">
-        <div class="col-lg-8 mb-4">
-            <div class="card shadow-sm">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Recent Resolutions</h5>
-                    <a href="{{ route('dashboard.resolutions.index') }}" class="btn btn-sm btn-outline-primary">
-                        <i class="bi bi-arrow-right me-1"></i>View All
-                    </a>
+            <!-- Total Resolutions -->
+            <div class="col-md-3 mb-3">
+                <div class="professional-card">
+                    <img src="{{ asset('images/resolution.png') }}" alt="Resolutions" class="feature-icon mx-auto mb-3">
+                    <h6 class="fw-bold mb-2 text-muted text-uppercase" style="font-size: 0.85rem; letter-spacing: 1px;">
+                        Total Resolutions</h6>
+                    <p class="display-4 fw-bold mb-1 text-warning">
+                        {{ ($pendingResolutions ?? 0) + ($approvedResolutions ?? 0) + ($rejectedResolutions ?? 0) }}
+                    </p>
+                    <small class="text-muted">All resolutions</small>
                 </div>
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover mb-0">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Title</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                    <th class="text-end">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($recentResolutions ?? [] as $resolution)
+            </div>
+
+            <!-- Updates / Announcements -->
+            <div class="col-md-3 mb-3">
+                <div class="professional-card">
+                    <img src="{{ asset('images/update.png') }}" alt="Updates" class="feature-icon mx-auto mb-3">
+                    <h6 class="fw-bold mb-2 text-muted text-uppercase" style="font-size: 0.85rem; letter-spacing: 1px;">
+                        Updates / Announcements</h6>
+                    <p class="display-4 fw-bold mb-1 text-primary">
+                        {{ ($updatesCount ?? 0) + ($announcementsCount ?? 0) }}
+                    </p>
+                    <small class="text-muted">Total notifications</small>
+                </div>
+            </div>
+
+            <!-- Total Residents -->
+            <div class="col-md-3 mb-3">
+                <div class="professional-card">
+                    <img src="{{ asset('images/resident.png') }}" alt="Residents" class="feature-icon mx-auto mb-3">
+                    <h6 class="fw-bold mb-2 text-muted text-uppercase" style="font-size: 0.85rem; letter-spacing: 1px;">
+                        Total Residents</h6>
+                    <p class="display-4 fw-bold mb-1 text-info">{{ $totalResidents ?? 0 }}</p>
+                    <small class="text-muted">Registered in the barangay</small>
+                </div>
+            </div>
+
+            <!-- Total Feedbacks -->
+            <div class="col-md-3 mb-3">
+                <div class="professional-card">
+                    <img src="{{ asset('images/feedback.png') }}" alt="Feedbacks" class="feature-icon mx-auto mb-3">
+                    <h6 class="fw-bold mb-2 text-muted text-uppercase" style="font-size: 0.85rem; letter-spacing: 1px;">
+                        Total Feedbacks</h6>
+                    <p class="display-4 fw-bold mb-1 text-purple">{{ $feedbackCount ?? 0 }}</p>
+                    <small class="text-muted">Feedbacks submitted</small>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Recent Resolutions Table -->
+        <div class="row mb-4">
+            <div class="col-lg-12">
+                <div class="card shadow-sm">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Recent Resolutions</h5>
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('dashboard.feedbacks.index') }}" class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-chat-dots"></i> View Feedback
+                            </a>
+
+                            <a href="{{ route('dashboard.updates.index') }}" class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-bell"></i> View Updates
+                            </a>
+                            <a href="{{ route('dashboard.accounts.index') }}" class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-person-circle"></i> Account Settings
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light">
                                     <tr>
-                                        <td class="fw-bold" style="color: #0b95bf;">#{{ $resolution->id }}</td>
-                                        <td><strong style="color: #2c3e50;">{{ Str::limit($resolution->title, 40) }}</strong></td>
-                                        <td>
-                                            <i class="bi bi-calendar3 me-1" style="color: #6c757d;"></i>
-                                            {{ $resolution->created_at->format('M d, Y') }}
-                                        </td>
-                                        <td>
-                                            <span class="status-badge {{ strtolower($resolution->status) }}">
-                                                {{ ucfirst($resolution->status) }}
-                                            </span>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-outline-primary">
-                                                <i class="bi bi-eye"></i> View
-                                            </a>
-                                        </td>
+                                        <th>ID</th>
+                                        <th>Title</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center py-4">
-                                            <div class="empty-state">
-                                                <div class="empty-state-icon">
-                                                    <i class="bi bi-file-earmark-text"></i>
+                                </thead>
+                                <tbody>
+                                    @forelse($recentResolutions ?? [] as $resolution)
+                                        <tr>
+                                            <td class="fw-bold text-primary">#{{ $resolution->id }}</td>
+                                            <td><strong class="text-dark">{{ Str::limit($resolution->title, 40) }}</strong></td>
+                                            <td>{{ $resolution->created_at->format('M d, Y') }}</td>
+                                            <td>
+                                                <span class="status-badge {{ strtolower($resolution->status) }}">
+                                                    {{ ucfirst($resolution->status) }}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="4" class="text-center py-4">
+                                                <div class="empty-state">
+                                                    <div class="empty-state-icon"><i class="bi bi-file-earmark-text"></i></div>
+                                                    <h3>No Recent Resolutions</h3>
+                                                    <p>No resolutions have been created yet.</p>
                                                 </div>
-                                                <h3>No Recent Resolutions</h3>
-                                                <p>No resolutions have been created yet.</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-4 mb-4">
-            <div class="card shadow-sm mb-3">
-                <div class="card-header">
-                    <h5 class="mb-0">Quick Actions</h5>
-                </div>
-                <div class="card-body d-grid gap-2">
-                    <a href="{{ route('dashboard.resolutions.create') }}" class="btn btn-primary w-100">
-                        <i class="bi bi-plus-lg"></i> New Resolution
-                    </a>
-                    <a href="{{ route('dashboard.feedbacks') }}" class="btn btn-outline-primary w-100">
-                        <i class="bi bi-chat-dots"></i> View Feedback
-                    </a>
-                    <a href="{{ route('dashboard.updates') }}" class="btn btn-outline-primary w-100">
-                        <i class="bi bi-bell"></i> View Updates
-                    </a>
-                    <a href="{{ route('dashboard.accounts.index') }}" class="btn btn-outline-primary w-100">
-                        <i class="bi bi-person-circle"></i> Account Settings
-                    </a>
+        <!-- Recent Updates / Announcements Table -->
+        <div class="row mb-4">
+            <div class="col-lg-12">
+                <div class="card shadow-sm">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Recent Updates & Announcements</h5>
+                        <a href="{{ route('dashboard.updates.create') }}" class="btn btn-primary btn-sm"><i
+                                class="bi bi-plus-lg"></i> New Update</a>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Title</th>
+                                        <th>Type</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($recentUpdates ?? [] as $update)
+                                        <tr>
+                                            <td class="fw-bold text-primary">#{{ $update->id }}</td>
+                                            <td><strong class="text-dark">{{ Str::limit($update->title, 40) }}</strong></td>
+                                            <td>
+                                                <span
+                                                    class="badge {{ $update->status == 'announcement' ? 'bg-warning text-dark' : 'bg-info text-dark' }}">
+                                                    {{ ucfirst($update->status) }}
+                                                </span>
+                                            </td>
+                                            <td>{{ $update->created_at->format('M d, Y') }}</td>
+                                            <td>{{ ucfirst($update->status) }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center py-4">
+                                                <div class="empty-state">
+                                                    <div class="empty-state-icon"><i class="bi bi-bell"></i></div>
+                                                    <h3>No Updates / Announcements</h3>
+                                                    <p>No updates or announcements have been posted yet.</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="card shadow-sm">
-                <div class="card-header">
-                    <h5 class="mb-0">Recent Activity</h5>
+        <!-- Charts -->
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h5 class="mb-0">Resolution Status Overview</h5>
+                    </div>
+                    <div class="card-body"><canvas id="resolutionChart" height="250"></canvas></div>
                 </div>
-                <div class="card-body">
-                    <ul class="list-unstyled mb-0">
-                        <li class="d-flex align-items-center mb-3">
-                            <i class="bi bi-check-circle text-success me-2"></i>
-                            <span>Resolution Approved - 2 hours ago</span>
-                        </li>
-                        <li class="d-flex align-items-center mb-3">
-                            <i class="bi bi-chat-dots text-info me-2"></i>
-                            <span>New Feedback Received - 5 hours ago</span>
-                        </li>
-                        <li class="d-flex align-items-center mb-3">
-                            <i class="bi bi-exclamation-triangle text-danger me-2"></i>
-                            <span>Issue Reported - 1 day ago</span>
-                        </li>
-                        <li class="d-flex align-items-center">
-                            <i class="bi bi-file-earmark-plus text-primary me-2"></i>
-                            <span>New Resolution Created - 2 days ago</span>
-                        </li>
-                    </ul>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h5 class="mb-0">Feedback Trends (Last 7 Days)</h5>
+                    </div>
+                    <div class="card-body"><canvas id="feedbackChart" height="250"></canvas></div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-6 mb-4">
-            <div class="card shadow-sm">
-                <div class="card-header">
-                    <h5 class="mb-0">Resolution Status Overview</h5>
-                </div>
-                <div class="card-body">
-                    <canvas id="resolutionChart" height="250"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card shadow-sm">
-                <div class="card-header">
-                    <h5 class="mb-0">Feedback Trends (Last 7 Days)</h5>
-                </div>
-                <div class="card-body">
-                    <canvas id="feedbackChart" height="250"></canvas>
-                </div>
-            </div>
-        </div>
     </div>
-</div>
 @endsection
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    // Resolution Status Chart
-    new Chart(document.getElementById('resolutionChart'), {
-        type: 'doughnut',
-        data: {
-            labels: ['Pending', 'Approved', 'Rejected'],
-            datasets: [{
-                data: [{{ $pendingResolutions ?? 0 }}, {{ $approvedResolutions ?? 0 }}, {{ $rejectedResolutions ?? 0 }}],
-                backgroundColor: ['#ffc107','#28a745','#dc3545'],
-                borderColor: '#fff',
-                borderWidth: 2
-            }]
-        },
-        options: { responsive: true, maintainAspectRatio: false }
-    });
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Resolution Status Chart
+        new Chart(document.getElementById('resolutionChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Pending', 'Approved', 'Rejected'],
+                datasets: [{
+                    data: [{{ $pendingResolutions ?? 0 }}, {{ $approvedResolutions ?? 0 }}, {{ $rejectedResolutions ?? 0 }}],
+                    backgroundColor: ['#ffc107', '#28a745', '#dc3545'],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
 
-    // Feedback Trends Chart
-    new Chart(document.getElementById('feedbackChart'), {
-        type: 'line',
-        data: {
-            labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
-            datasets: [{
-                label: 'Feedback Received',
-                data: [12,19,8,15,10,22,18],
-                backgroundColor: 'rgba(11,149,191,0.1)',
-                borderColor: '#0b95bf',
-                fill: true,
-                tension: 0.3,
-                pointBackgroundColor: '#0b95bf'
-            }]
-        },
-        options: { responsive: true, maintainAspectRatio: false }
-    });
-</script>
+        // Feedback Trends Chart
+        new Chart(document.getElementById('feedbackChart'), {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Feedback Received',
+                    data: [12, 19, 8, 15, 10, 22, 18],
+                    backgroundColor: 'rgba(11,149,191,0.1)',
+                    borderColor: '#0b95bf',
+                    fill: true,
+                    tension: 0.3,
+                    pointBackgroundColor: '#0b95bf'
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    </script>
 @endpush

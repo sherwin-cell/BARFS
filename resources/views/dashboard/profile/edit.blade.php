@@ -5,17 +5,23 @@
 @section('content')
 <div class="profile-edit">
     <h2>Edit Profile</h2>
-    <form action="{{ route('profile.update') }}" method="POST">
+
+    <form action="{{ route('dashboard.profile.update') }}" method="POST">
         @csrf
-        <div>
+
+        <div class="mb-3">
             <label>Name</label>
-            <input type="text" name="name" value="{{ $user->name }}">
+            <input type="text" name="name" class="form-control"
+                   value="{{ $user->name }}" required>
         </div>
-        <div>
+
+        <div class="mb-3">
             <label>Email</label>
-            <input type="email" name="email" value="{{ $user->email }}">
+            <input type="email" name="email" class="form-control"
+                   value="{{ $user->email }}" required>
         </div>
-        <button type="submit">Update Profile</button>
+
+        <button type="submit" class="btn btn-primary">Update Profile</button>
     </form>
 </div>
 @endsection
